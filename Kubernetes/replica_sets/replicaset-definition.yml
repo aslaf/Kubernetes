@@ -1,0 +1,32 @@
+apiVersion: apps/v1 #must be apps/v1 in replicaset
+kind: ReplicaSet
+metadata:
+  name: myapp-replicaset
+  labels:
+    app: myapp
+    type: front-end
+spec:
+  template:
+    metadata: #Pod Metadata. Must be children of template section
+      name: nginx
+      labels:
+        app: myapp-pod
+        type: front-end
+    spec: #Pod Spec Section
+      containers:
+        - name: nginx-container
+          image: nginx
+  replicas: 3
+  selector: # requires selector definiton to help identify what pod falls under it! Why? Bc replica set can also manage pods that were not created as part of replicaset creation.
+    matchLabels: # if pod id created outside replica set, it will match the label "front-end" and managed it as part of replica set
+      type: front-end
+
+
+# Why labels & Selectors?
+
+# 3 deployed instances of front-end as 3 pods. To ensure 3 active pods at anytime. One use case of replica sets. If not created, replica sets will create for us
+
+# How does it know what pods to monitor?
+
+# Labels come handy to filter and scan. So it monitors and knows
+
