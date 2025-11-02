@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ReplicationController
+metadata: #Replication Controller Metadata
+  name: myapp-rc
+  labels:
+    app: myapp
+    type: front-end
+spec: #Replication Controller Spec Section
+  template:
+    metadata: #Pod Metadata. Must be children of template section
+      name: nginx
+      labels:
+        app: myapp-pod
+        type: front-end
+    spec: #Pod Spec Section
+      containers:
+        - name: nginx-container
+          image: nginx
+
+# How many replicas we need? See below. Must be children of Replication Controller Spec Section.
+  replicas: 3 

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: python
+  labels:
+    app: python
+    tier: backend
+spec:
+  containers:
+    - name: python-demo
+      image: python	

@@ -1,0 +1,6 @@
+kubectl create -f replicaset-definition.yml                     # To create a replicaset
+kubectl get replicaset                                          # see list of replicasets created
+kubectl delete replicaset myapp-replicaset                      # to delete replicaset  
+kubectl replace -f replicaset-definition.yml                    # to replace or update replicaset
+kubectl scale --replicas=6 -f replicaset-definition.yml         # To scale replicasset from commandline
+kubectl describe replicasets myapp-replicaset                   # detailed pod info
